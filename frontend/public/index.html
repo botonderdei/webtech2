@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="shortcut icon" href="<%= webpackConfig.output.publicPath %>favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+  <title>webtech2</title>
+</head>
+
+<body>
+  <style>
+    nav {
+      background: #2B5105;
+      height: 40px;
+    }
+
+    nav ul {
+      height: inherit;
+      color: #FAFAFA;
+    }
+
+    nav ul li {
+      float: left;
+      min-width: 10%;
+      text-align: center;
+      list-style: none;
+      height: inherit;
+    }
+
+    nav ul li {
+      height: 40px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #FAFAFA;
+      display: block;
+      height: 40px;
+      padding: 10px;
+      text-decoration: none;
+    }
+
+  li a.active {
+  background-color: black;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+    footer {
+      position: fixed;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #2B5105;
+      color: #FAFAFA;
+      text-align: center;
+      font-size: 15px;
+      bottom: 0;
+
+    }
+
+    .openbtna {
+      text-decoration: none;
+      color: #FAFAFA;
+      display: block;
+      height: 40px;
+      padding: 10px 20px 10px 20px;
+      text-decoration: none;
+    }
+
+
+    .closebtna {
+      text-decoration: none;
+      color: #FAFAFA;
+      display: block;
+      height: 40px;
+      padding: 10px 20px 10px 20px;
+      text-decoration: none;
+      top: 0;
+      position: absolute;
+      right: 0px;
+    }
+
+    nav ul a:hover {
+      background-color: #2B5105;
+      text-decoration: none;
+      color: #FAFAFA;
+    }
+
+    .openbtn {
+      float: right;
+    }
+
+
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      background-color: #2B5105;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 40px;
+    }
+
+    .sidenav a {
+      padding: 10px 20px 10px 20px;
+      text-decoration: none;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+      color: grey;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      margin-left: 50px;
+      font-size: 18px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+  </style>
+
+
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/getCars">Cars</a></li>
+      <li><a href="/getMyCars">My Cars</a></li>
+      <li><a href="/addCar">Add car</a></li>
+
+
+      <span class="openbtn"><a class="openbtna" onclick="openNav()">&times;</a></span>
+
+      <div id="mySidenav" class="sidenav">
+        <a id="result"></a>
+        <a href="javascript:void(0)" class="closebtna" onclick="closeNav()">&times;</a>
+        <a id="regbtn" href="/register">Sign in/up</a>
+        <a id="modbtn" href="/modify">Modify</a>
+        <a id="outbtn" href="/" onclick="deleteStore()">Logout</a>
+      </div>
+    </ul>
+  </nav>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script>
+    function yourFunction() {
+      if (localStorage.getItem('user') != null && localStorage.getItem('user') != undefined) {
+        document.getElementById("result").innerHTML = "Hello " + JSON.parse(localStorage.getItem('user')).name;
+        var reg = document.getElementById("regbtn");
+        reg.hidden = true;
+        var out = document.getElementById("outbtn");
+        out.hidden = false;
+        var mod = document.getElementById("modbtn");
+        mod.hidden = false;
+      } else {
+        document.getElementById("result").innerHTML = "Not logged in!";
+        var reg = document.getElementById("regbtn");
+        reg.hidden = false;
+        var out = document.getElementById("outbtn");
+        out.hidden = true;
+        var mod = document.getElementById("modbtn");
+        mod.hidden = true;
+      }
+      setTimeout(yourFunction, 500);
+    }
+    yourFunction();
+
+
+    function deleteStore() {
+      localStorage.removeItem('user');
+    }
+
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "150px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
+  <footer></footer>
+</body>
+
+</html>
